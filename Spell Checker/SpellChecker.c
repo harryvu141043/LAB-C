@@ -68,14 +68,14 @@ int main(){
 	strcpy(choice,"yes");
 	while(!(strcmp(choice,"yes"))){
 		fin=fopen("dictionary.txt","r");
-		int id=0,found=1,found1=0;
+		int id=0,unfound=1,found1=0;
 		puts("Please enter the word you would like checked.");
 		gets(w);
 		while(!feof(fin)){
 			fscanf(fin,"%s",dic[id]);
 			if(!(strcmp(w,dic[id]))){
 				printf("Great, %s is in the dictionary\n",w);
-				found=0;
+				unfound=0;
 				break;
 			}
 			if(substring(dic[id],w)||subsequence(dic[id],w)||
@@ -85,7 +85,7 @@ int main(){
 					found1=1;
 			}
 		}
-		if(found&&found1){
+		if(unfound&&found1){
 			fin=fopen("dictionary.txt","r");
 			puts("Here are possible words you could have meant:");
 			while(!feof(fin)){
@@ -101,13 +101,5 @@ int main(){
 		fclose(fin);
 		puts("Would you like to enter another word? (yes/no)");
 		gets(choice);
-		
-		
 	}
-
-
-
-
-	
-
 }
